@@ -16,6 +16,7 @@ public class SamplePageObjectClass extends PageObject{
 	public SamplePageObjectClass(WebDriver driver) {
 		super(driver);
 		element("allLinks", By.tagName("a"));
+		element("detailedDes", By.tagName("p"));
 	}
 	
 	//All the operations here
@@ -35,6 +36,19 @@ public class SamplePageObjectClass extends PageObject{
 	
 	public List<String> getAllLinkTexts(){
 		allelements = elements("allLinks");
+		System.out.println("Count is"+allelements.size());
+		List<String> allData = new ArrayList<>();
+		
+		for (WebElement webElement : allelements) {
+			String attribute = webElement.getText();
+			System.out.println(attribute);
+			allData.add(attribute);
+		}
+		return allData;
+	}
+	
+	public List<String> getDetailedDes(){
+		allelements = elements("detailedDes");
 		System.out.println("Count is"+allelements.size());
 		List<String> allData = new ArrayList<>();
 		

@@ -39,6 +39,7 @@ public class SampleTestcase extends WebTestBase{
 		page = new SamplePageObjectClass(driver);
 		List<String> allLinks = page.getAllLinks();
 		List<String> allLinkTexts = page.getAllLinkTexts();
+		List<String> detailedDes = page.getDetailedDes();
 		data = new PutData();
 		//int i=0, j=0;
 		File file = new File("./testData.xlsx");
@@ -46,27 +47,13 @@ public class SampleTestcase extends WebTestBase{
 		wb = new XSSFWorkbook();
 		FileOutputStream fos = new FileOutputStream(file);
 		Sheet sheet = wb.createSheet("Demo");
-		for(int k=0;k<allLinks.size();k++) {
+		for(int k=0;k<detailedDes.size();k++) {
 			Row createRow = sheet.createRow(k);
 			createRow.createCell(0).setCellValue(allLinks.get(k));
 			createRow.createCell(1).setCellValue(allLinkTexts.get(k));
+			createRow.createCell(2).setCellValue(detailedDes.get(k));
 		}
-		
 		wb.write(fos);
-		/*for (String text : allLinks) {
-			System.out.println(text);
-			sheet.createRow(i++).createCell(j).setCellValue(text);
-		}
-		i=0; j=1;
-		FileOutputStream fos = new FileOutputStream(file);
-		wb.write(fos);
-		
-		for (String text : allLinkTexts) {
-			System.out.println(text);
-			
-			sheet.createRow(i++).createCell(j).setCellValue(text);
-		}
-		wb.write(fos);*/
 		wb.close();
 	}
 }
